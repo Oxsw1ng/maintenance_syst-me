@@ -262,6 +262,18 @@ int parseCommand(char *command) {
     }
     return 1;
   }
+  if (strcmp(args[0], "home") == 0) {
+    chdir(getenv("HOME"));
+    return 1;
+  }
+  if (strcmp(args[0], "upd") == 0) {
+    system("sudo apt-get update");
+    return 1;
+  }
+  if (strcmp(args[0], "upg") == 0) {
+    system("sudo apt-get upgrade");
+    return 1;
+  }
   if (strcmp(args[0], "history") == 0) {
       fp = fopen(file_path, "r");
       int iterator = 1;

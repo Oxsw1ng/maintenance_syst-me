@@ -173,22 +173,18 @@ int main(int argc, char** argv) {
         if (current_command >= 0 && current_command <= nbCommandes) {
         fp = fopen(file_path, "r");
         if (fp != NULL) {
-          while (commandLength > 0) {
-            cmd[commandLength] = ' ';
-            commandLength--;
-            printf("\b \b");
-          }
+          memset(cmd, 0, sizeof(cmd));
+          commandLength = 0;
           for (int k = 0; k <= current_command; k++) {
             fgets(ligne, sizeof(ligne), fp);
           }
           int j = 0;
-          while (ligne[j+1] != '\0') {
+          while (ligne[j] != '\0') {
             cmd[j] = ligne[j];
-            printf("%c", cmd[j]);
+            printf("%c", cmd[j-1]);
             j++;
             commandLength++;
           }
-          printf("\n\n %d \n", commandLength);
         }
         fclose(fp);
         }
